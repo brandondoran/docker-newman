@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Run postman tests via newman in a container",
   "main": "src/index.js",
+  "repository": {
+    "url": "https://github.com/brandondoran/docker-newman",
+    "type": "git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,9 +14,10 @@
     "postman",
     "newman",
     "docker",
+    "nodejs",
     "api",
     "test",
-    "smoke",
+    "smoke test",
     "e2e"
   ],
   "author": "Brandon Doran <bdoran@gmail.com>",
