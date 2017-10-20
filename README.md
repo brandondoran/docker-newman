@@ -2,6 +2,8 @@
 
 Test your API with [Postman](https://www.getpostman.com/) Collections run via [Newman](https://github.com/postmanlabs/newman) in a Docker Container.
 
+## Usage
+
 1. Export collection and environments using the Postman app.
 1. Save files in the following structure:
     ```text
@@ -15,15 +17,34 @@ Test your API with [Postman](https://www.getpostman.com/) Collections run via [N
     │           ├── staging.json
     │           └── test.json
     ```
+1. Run the container, mounting your postman directory as a volume:
 
-## Usage
+    ```bash
+    docker run \
+      --rm \
+      -it \
+      -v `pwd`/postman:/postman \
+      brandondoran/newman -e env/production.json collection.json
 
-Run container, mounting your postman directory as a volume:
+    ```
+
+## Advanced
+
+Pass any of newman's [supported CLI options](https://www.npmjs.com/package/newman#cli-reporter-options) to the docker run command.
+
+### Example
+
+Export a json report to test/reports/test-results.json on the host file system:
 
 ```bash
-# defaults to running tests against production
-docker run --rm -it -v `pwd`/test/postman:/app/postmanbrandondoran/newman
-
-# Specify NODE_ENV to run against a different environment
-docker run --rm -it -e NODE_ENV=staging -v `pwd`/test/postman:/app/postmanbrandondoran/newman
+docker run \
+  --rm \
+  -it \
+  -v `pwd`/test/postman:/postman \
+  -v `pwd`/test/reports:/reports \
+  brandondoran/newman \
+  -e env/production.json \
+  --reporters json \
+  --reporter-json-export /reports/test-results.json \
+  collection.json
 ```
