@@ -9,8 +9,7 @@ Test your API with [Postman](https://www.getpostman.com/) Collections run via [N
     ```text
     ├── my-api
     │   └── postman
-    │       ├── collections
-    │       │   └── my-api-collection.json
+    │       ├── collection.json
     │       └── environments
     │           ├── development.json
     │           ├── production.json
